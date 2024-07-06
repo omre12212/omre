@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CarInfo from '../screens/CarInfo';
 import CartPage from '../screens/CartPage';
 import SplashX from '../screens/SplashX';
-import Test from '../screens/Test';
+// import Test from '../screens/Test';
 
 
 
@@ -17,7 +17,7 @@ const MainNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={"test"} component={Test}/>
+        {/* <Stack.Screen name={"test"} component={Test}/> */}
         <Stack.Screen name={ScreenNames.splash} component={SplashX} />
         <Stack.Screen name={ScreenNames.home} component={Home} />
         <Stack.Screen name={ScreenNames.CarInfo} component={CarInfo} />
