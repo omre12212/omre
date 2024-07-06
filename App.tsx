@@ -9,7 +9,6 @@ const App = () => {
     </View>
   )
 }
-//يصهزص
 
 
 export default App
