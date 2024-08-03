@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View, Pressable } from 'react-native';
 import Card from '../components/Card';
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +23,11 @@ const Home = () => {
       />
     ));
   };
+
+  useEffect(() => {
+    
+  }, [])
+  
 
   return (
     <View>

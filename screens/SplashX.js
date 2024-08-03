@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Image, Animated, Modal,} from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Image, Animated, Modal } from 'react-native';
 
 const SplashScreen = ({ navigation }) => {
   const [israelTime, setIsraelTime] = useState('');
@@ -10,7 +10,7 @@ const SplashScreen = ({ navigation }) => {
 
   useEffect(() => {
     // Simulate loading or any other necessary initialization logic
-    setTimeout(() => {
+    const adTimeout = setTimeout(() => {
       setShowAd(true); // Show the ad after a delay
     }, 2000); // 2000 milliseconds (2 seconds) delay
 
@@ -27,7 +27,11 @@ const SplashScreen = ({ navigation }) => {
       setIsraelTime(date);
     }, 1000);
 
-    return () => clearInterval(interval);
+    // Clean up
+    return () => {
+      clearInterval(interval);
+      clearTimeout(adTimeout);
+    };
   }, [fadeAnim]);
 
   const handleGetStarted = () => {
@@ -36,11 +40,10 @@ const SplashScreen = ({ navigation }) => {
       toValue: 0,
       duration: 500, // 0.5 second duration for the animation
       useNativeDriver: true,
-    }).start();
-    // Navigate to thre main screen after the animation completes
-    setTimeout(() => {
+    }).start(() => {
+      // Navigate to the main screen after the animation completes
       navigation.navigate('home');
-    }, 500);
+    });
   };
 
   return (
@@ -50,7 +53,7 @@ const SplashScreen = ({ navigation }) => {
       resizeMode="cover"
     >
       <View style={styles.topLeft}>
-        <Text style={styles.israelTime}> Time: {israelTime}</Text>
+        <Text style={styles.israelTime}>Time: {israelTime}</Text>
       </View>
       <View style={styles.topRight}>
         <Image source={require('../src/Images/image.png')} style={styles.image} />
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
   image: {
     width: 80,
     height: 80,
-    borderRadius: 50,
+    borderRadius: 40,
   },
   content: {
     alignItems: 'center',
@@ -154,12 +157,11 @@ const styles = StyleSheet.create({
     elevation: 5,
     width: '80%', // Set the width to 80% of the screen
     marginHorizontal: '10%', // Center the modal horizontally
-    marginTop: '50%', // Push the modal down from the top
   },
   adImage: {
     width: 200,
     height: 200,
-    marginBottom: 30,
+    marginBottom: 20,
   },
   adText: {
     fontSize: 16, 
